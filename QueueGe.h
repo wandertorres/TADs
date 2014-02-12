@@ -3,7 +3,7 @@
  * Author: wander
  *
  * Created on 4 de Fevereiro de 2014, 20:24
- 
+*/
 
 #ifndef QUEUEGE_H
 #define	QUEUEGE_H
@@ -26,7 +26,7 @@ public:
     virtual ~QueueGe();
 private:
     void doubleArray();
-    int front, back, max;
+    int f, b, max, s;
     T *queue;
 };
 
