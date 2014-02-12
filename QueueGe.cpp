@@ -12,8 +12,8 @@ using namespace std;
 template <class T>
 QueueGe<T>::QueueGe() {
         max = 10;
-        f = 0;
-        b = 0;
+        f = -1;
+        b = -1;
         queue = new T[max];
         s = 0;
 }
@@ -21,7 +21,7 @@ QueueGe<T>::QueueGe() {
 template <class T>
 QueueGe<T>::QueueGe(int max) {
         this->max = max;
-        f = 0;
+        f = -1;
         b = 0;
         queue = new T[max];
         s = 0;
@@ -39,7 +39,7 @@ bool QueueGe<T>::isEmpty() {
 
 template <class T>
 bool QueueGe<T>::isFull() {
-    return s == max;
+    return s==max;
 }
 
 template <class T>
@@ -48,12 +48,22 @@ int QueueGe<T>::size() {
 }
 
 template <class T>
+T QueueGe<T>::front() {
+    return queue[f];
+}
+
+template <class T>
+T QueueGe<T>::back() {
+    return queue[b];
+}
+
+template <class T>
 void QueueGe<T>::push(T value) {
-    if(f == 0)
+    if(f < 0)
         f++;
     if(s == max)
         doubleArray();
-    queue[++back] = value;
+    queue[++b] = value;
     s++;
 }
 
@@ -65,7 +75,7 @@ T QueueGe<T>::pop() {
         throw (string(Underflow));
         }
         s--;
-        return queue[front++];
+        return queue[f++];
     }
     catch (string under){
         cout << under << endl;
@@ -74,21 +84,23 @@ T QueueGe<T>::pop() {
 
 template <class T>
 void QueueGe<T>::clear() {
-    back = 0;
-    front = 0;
+    b = -1;
+    f = -1;
     s = 0;
 }
 
 template <class T>
 T QueueGe<T>::print() {
     T aux[s];
-    int i = 0;
+    int i = -1;
     while (isEmpty() == false) {
         aux[++i] = pop();
         cout << aux[i] << endl;
     }
-    while(i > 0){
-        push(aux[i--]);
+    int j = i;
+    i = -1;
+    while(i < j){
+        push(aux[++i]);
     }
 }
 

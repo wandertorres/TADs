@@ -17,8 +17,8 @@ public:
     bool isEmpty();
     bool isFull();
     int size();
-    int front();
-    int back();
+    T front();
+    T back();
     void push(T value);
     T pop();
     void clear();

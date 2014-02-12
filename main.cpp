@@ -6,11 +6,14 @@
  */
 #include <iostream>
 #include "StackGe.cpp"
+#include "QueueGe.cpp"
 #include "MinMaxHeap.cpp"
 using namespace std;
 
 int main() {
     StackGe<int> s;
+    QueueGe<int> q;
+    
     return 0;
 }
 
